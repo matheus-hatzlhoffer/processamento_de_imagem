@@ -72,7 +72,10 @@ def planoDeBit(img, bit):
     if(bit<0 or bit>7):
         print("O valor do bit precisa estar entre 0 e 7. Nenhuma alteração feita")
         return img
-    mascara = np.full(img.shape, (2**bit+1)-1)
+    mascara = np.full(img.shape, (2**(bit+1))-1)
+    print(img.shape)
+    print(mascara.shape)
+    print(mascara[0][0])
     plano_de_bit = np.bitwise_and(img, mascara)
     return plano_de_bit
 
@@ -93,9 +96,9 @@ def combinacaoDeImagem(img1, img2, propimg1, propimg2):
 
 
 # open images files and store they in a numpy array
-img_baboon = np.array(cv2.imread('../input/baboon.png', cv2.IMREAD_GRAYSCALE))
-img_butterfly = np.array(cv2.imread('../input/butterfly.png', cv2.IMREAD_GRAYSCALE))
-img_city = np.array(cv2.imread('../input/city.png', cv2.IMREAD_GRAYSCALE))
+img_baboon = np.array(plt.imread('input/baboon.png', cv2.IMREAD_GRAYSCALE))
+img_butterfly = np.array(plt.imread('input/butterfly.png', cv2.IMREAD_GRAYSCALE))
+img_city = np.array(plt.imread('input/city.png', cv2.IMREAD_GRAYSCALE))
 
 #Cria as imagens conforme os exemplos da tarefa 0
 img_city_negativa = imgNegativo(img_city)
@@ -106,7 +109,7 @@ img_city_reflexao = imgEspelhada(img_city)
 img_baboon_brilho1 = ajusteBrilho(img_baboon, 1.5)
 img_baboon_brilho2 = ajusteBrilho(img_baboon, 2.5)
 img_baboon_brilho3 = ajusteBrilho(img_baboon, 3.5)
-img_baboon_bit1 = planoDeBit(img_baboon, 0)
+#img_baboon_bit1 = planoDeBit(img_baboon, 0)
 img_baboon_bit2 = planoDeBit(img_baboon, 4)
 img_baboon_bit3 = planoDeBit(img_baboon, 7)
 img_combinada1 = combinacaoDeImagem(img_baboon, img_butterfly, 0.2, 0.8)
